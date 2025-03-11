@@ -1,9 +1,19 @@
-
+import MovieCard from './../components/MovieCard';
 
 const Homepage = () => {
     return (
         <>
-            <h1>Dove c'è home c'è casa</h1>
+            <h1 className="text-primary">Bool Books</h1>
+            <h2><i>The nerdest book community</i></h2>
+
+            <div className="row row-cols-3 mt-4">
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+            </div>
         </>
     )
 }
