@@ -1,4 +1,4 @@
-const ReviewCard = (reviewProp) => {
+const ReviewCard = ({ reviewProp }) => {
 
     //destrutturo prop
     const { name, text, vote } = reviewProp;
