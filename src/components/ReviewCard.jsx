@@ -1,6 +1,6 @@
 const ReviewCard = () => {
     return (
-        <div className="card mb-4">
+        <div className="review-card mb-4">
             <div className="card-body">
                 <p className="card-text">
                     testo della recensione

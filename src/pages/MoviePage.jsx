@@ -5,12 +5,12 @@ import ReviewCard from '../components/ReviewCard';
 const MoviePage = () => {
     return (
         <>
-            <header id="book" className="border-bottom border-1 mb-3">
-                <div className="d-flex mb-3">
-                    <img className="book-img"
+            <header id="movie" className="border-bottom border-1 mb-3">
+                <div className="d-flex-movie mb-3">
+                    <img className="movie-img"
                         src="http://localhost:3000/img/movies_cover/matrix.jpg"
                         alt="descrizione img" />
-                    <div>
+                    <div className='movie-rw-text'>
                         <h1>Titolo libro</h1>
                         <h3 className="text-muted">
                             <i>
@@ -27,6 +27,7 @@ const MoviePage = () => {
             <section>
                 <header className="d-flex justify-content-between align-items-center mb-4">
                     <h4>Our community reviews</h4>
+                    <span>Average</span>
                 </header>
                 <ReviewCard />
                 <ReviewCard />
@@ -34,7 +35,7 @@ const MoviePage = () => {
                 <ReviewCard />
             </section>
 
-            <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
+            <footer className="border-top border-1 pt-2 mb-3 justify-content-end">
                 <Link className="btn btn-secondary" to="/">Back to home</Link>
             </footer>
         </>
