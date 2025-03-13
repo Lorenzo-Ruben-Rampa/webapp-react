@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const MovieCard = (props) => {
 
-    const { id, title, author, abstract, image } = props.movieProp;
+    const { id, title, director, abstract, image } = props.movieProp;
     return (
         <div className="card mb-4">
             <div className="row-img">
@@ -14,10 +14,10 @@ const MovieCard = (props) => {
                 <h5 className="card-title">
                     {title}
                 </h5>
-                <h6>By {author}</h6>
+                <h6>By {director}</h6>
                 <p>{abstract}</p>
             </div>
-            < Link to={`books/${id}`} className="btn btn-primary">See more</Link>
+            < Link to={`movies/${id}`} className="btn btn-primary">See more</Link>
         </div>
     )
 }

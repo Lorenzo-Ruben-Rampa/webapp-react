@@ -1,24 +1,47 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
 import ReviewCard from '../components/ReviewCard';
 
 const MoviePage = () => {
+
+    //recupero id del movie richiesto
+    const { id } = useParams();
+
+    //imposto lo stato del componente
+    const [movie, setMovie] = useState({});
+
+    //funzione di chiamata API
+    const fetchMovie = () => {
+        axios.get("http://localhost:3000/api/movies/" + id)
+            .then(
+                res => {
+                    // console.log(res.data);
+                    setMovie(res.data)
+                }
+            )
+            .catch(err => console.log(err))
+    }
+
+    //chiamata all'API al montaggio del componente
+    useEffect(fetchMovie, []);
+
     return (
         <>
             <header id="movie" className="border-bottom border-1 mb-3">
                 <div className="d-flex-movie mb-3">
                     <img className="movie-img"
-                        src="http://localhost:3000/img/movies_cover/matrix.jpg"
-                        alt="descrizione img" />
+                        src={movie.image}
+                        alt={movie.title} />
                     <div className='movie-rw-text'>
-                        <h1>Titolo libro</h1>
+                        <h1>{movie.title}</h1>
                         <h3 className="text-muted">
                             <i>
-                                By Nome autore
+                                By {movie.director}
                             </i>
                         </h3>
                         <p>
-                            Abscract lorem ipsm dolor sit amet...
+                            {movie.abstract}
                         </p>
                     </div>
                 </div>
