@@ -26,6 +26,13 @@ const MoviePage = () => {
     //chiamata all'API al montaggio del componente
     useEffect(fetchMovie, []);
 
+    //funzione di rendering delle reviews
+    const renderReviews = () => {
+        return movie.reviews?.map(
+            review => <ReviewCard key={review.id} reviewProp={review} />
+        )
+    }
+
     return (
         <>
             <header id="movie" className="border-bottom border-1 mb-3">
@@ -52,10 +59,7 @@ const MoviePage = () => {
                     <h4>Our community reviews</h4>
                     <span>Average</span>
                 </header>
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
+                {renderReviews()}
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 justify-content-end">

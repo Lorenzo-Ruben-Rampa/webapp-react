@@ -1,16 +1,20 @@
-const ReviewCard = () => {
+const ReviewCard = (reviewProp) => {
+
+    //destrutturo prop
+    const { name, text, vote } = reviewProp;
+
     return (
         <div className="review-card mb-4">
             <div className="card-body">
                 <p className="card-text">
-                    testo della recensione
+                    {text}
                 </p>
                 <strong>
-                    Vote: voto recensione
+                    Vote: {vote}
                 </strong>
                 <address>
                     <i>
-                        By nome del recensore
+                        By {name}
                     </i>
                 </address>
             </div>
