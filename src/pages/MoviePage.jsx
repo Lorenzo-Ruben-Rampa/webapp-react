@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import ReviewCard from '../components/ReviewCard';
 
@@ -11,6 +11,9 @@ const MoviePage = () => {
     //imposto lo stato del componente
     const [movie, setMovie] = useState({});
 
+    //use Navigate
+    const redirect = useNavigate();
+
     //funzione di chiamata API
     const fetchMovie = () => {
         axios.get("http://localhost:3000/api/movies/" + id)
@@ -20,7 +23,8 @@ const MoviePage = () => {
                     setMovie(res.data)
                 }
             )
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+        if (err.status === 404) redirect("/*")
     }
 
     //chiamata all'API al montaggio del componente
