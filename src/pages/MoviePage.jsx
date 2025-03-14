@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import ReviewCard from '../components/ReviewCard';
+import ReviewForm from './../components/ReviewForm';
 
 const MoviePage = () => {
 
@@ -23,8 +24,11 @@ const MoviePage = () => {
                     setMovie(res.data)
                 }
             )
-            .catch(err => console.log(err));
-        if (err.status === 404) redirect("/*")
+            .catch(err => {
+                console.log(err);
+                if (err.status === 404) redirect("/*")
+            }
+            )
     }
 
     //chiamata all'API al montaggio del componente
@@ -64,6 +68,10 @@ const MoviePage = () => {
                     <span>Average</span>
                 </header>
                 {renderReviews()}
+            </section>
+
+            <section>
+                <ReviewForm book_id={book.id} realoadReviews={fectBook} />
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 justify-content-end">
