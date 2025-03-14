@@ -71,7 +71,7 @@ const MoviePage = () => {
             </section>
 
             <section>
-                <ReviewForm book_id={book.id} realoadReviews={fectBook} />
+                <ReviewForm movie_id={movie.id} realoadReviews={fetchMovie} />
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 justify-content-end">

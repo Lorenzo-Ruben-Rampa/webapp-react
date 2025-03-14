@@ -10,7 +10,24 @@ const ReviewForm = () => {
     //funzione di creazione oggetto valori form
     const setFieldValue = (e) => {
         const { value, name } = e.target;
-        setFormData({ ...formData, [name]: value }); s6
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const urlEndpoint = `http://localhost:3000/api/movies/${movie_id}/reviews`;
+
+    // funzione di invio richiesta al submit del form
+    const submitReview = (e) => {
+        e.preventDefault();
+
+        axios.post(urlEndpoint, formData, { headers: { 'Content-Type': 'application/json' } })
+            .then(
+                () => {
+                    setFormData(initialValue)
+                    realoadReviews()
+                }
+            )
+            .catch(err => console.log(err)
+            )
     }
 
     return (
