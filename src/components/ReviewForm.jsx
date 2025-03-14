@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import axios from 'axios';
 
-const ReviewForm = () => {
+const ReviewForm = ({ movie_id }) => {
 
     const initialValue = { name: "", text: "", vote: 1 };
 
     //variabile di stato per info form
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState(initialValue);
 
     //funzione di creazione oggetto valori form
     const setFieldValue = (e) => {
@@ -23,7 +24,7 @@ const ReviewForm = () => {
             .then(
                 () => {
                     setFormData(initialValue)
-                    realoadReviews()
+                    reloadReviews()
                 }
             )
             .catch(err => console.log(err)
@@ -31,8 +32,8 @@ const ReviewForm = () => {
     }
 
     return (
-        <div className='card'>ReviewForm
-            <h5>Add your review</h5>
+        <div className='form-card'>
+            <h3>Add your review</h3>
             <div className='card'>
                 <form onSubmit={submitReview}>
                     <div className="form-group">
@@ -47,8 +48,8 @@ const ReviewForm = () => {
                         <label>Voto</label>
                         <input type="number" min="1" max="5" className="form-control" name='vote' value={formData.vote} onChange={setFieldValue} />
                     </div>
-                    <div className="d-flex justify-content-end pt-3">
-                        <button type="submit" className="btn btn-primary">
+                    <div className="justify-content-end pt-3 send-btn">
+                        <button type="submit" className="btn form-btn">
                             Send
                         </button>
                     </div>
