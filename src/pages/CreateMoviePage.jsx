@@ -15,6 +15,10 @@ const endpointApi = "http://localhost:3000/api/movies";
 
 const CreateMoviePage = () => {
 
+    //navigazione
+    const navigate = useNavigate();
+
+    // states iniziali
     const [formDataOgj, setFormDataOgj] = useState(initialData);
 
     //gestione raccolta dati del form
@@ -28,22 +32,14 @@ const CreateMoviePage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // // Creiamo un oggetto FormData per inviare i dati del form
-        const dataToSend = new FormData();
-
-        // // Aggiungiamo dinamicamente i dati del form all'oggetto FormData
-        for (const key in formDataOgj) {
-            dataToSend.append(key, formDataOgj[key]);
-        }
-
         // // Inviamo i dati al backend con axios e reindirizziamo alla home
         axios.post(endpointApi, formDataOgj, { headers: { "Content-Type": "multipart/form-data" } })
             .then(() => {
                 console.log("Film aggiunto con successo!");
-                // navigate("/");
+                () => { navigate("/") };
             })
             .catch((err) => {
-                console.error("Errore nella richiesta:", err.response ? err.response.data : err.message);
+                // console.error("Errore nella richiesta:", err.response ? err.response.data : err.message);
             });
     }
 
@@ -68,7 +64,7 @@ const CreateMoviePage = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label>Author:</label>
+                        <label>Director:</label>
                         <input
                             className="form-control"
                             name="author"
