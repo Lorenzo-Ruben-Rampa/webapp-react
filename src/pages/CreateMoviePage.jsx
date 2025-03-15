@@ -11,12 +11,14 @@ const initialData = {
     abstract: ""
 };
 
+const endpointApi = "http://localhost:3000/api/movies";
+
 const CreateMoviePage = () => {
 
     const [formDataOgj, setFormDataOgj] = useState(initialData);
 
     //gestione raccolta dati del form
-    const setFieldValue = () => {
+    const setFieldValue = (e) => {
         const { value, name } = e.target;
         if (name === "image") setFormDataOgj({ ...formDataOgj, image: e.target.files[0] });
         else setFormDataOgj({ ...formDataOgj, [name]: value });
@@ -33,6 +35,16 @@ const CreateMoviePage = () => {
         for (const key in formDataOgj) {
             dataToSend.append(key, formDataOgj[key]);
         }
+
+        // // Inviamo i dati al backend con axios e reindirizziamo alla home
+        axios.post(endpointApi, formDataOgj, { headers: { "Content-Type": "multipart/form-data" } })
+            .then(() => {
+                console.log("Film aggiunto con successo!");
+                // navigate("/");
+            })
+            .catch((err) => {
+                console.error("Errore nella richiesta:", err.response ? err.response.data : err.message);
+            });
     }
 
     return (
