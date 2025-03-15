@@ -112,6 +112,10 @@ h6 {
   color: grey;
 }
 
+.navbar-brand {
+  margin-right: 30px;
+}
+
 .btn {
   padding: 10px 16px;
   font-size: 18px;
